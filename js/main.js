@@ -220,7 +220,7 @@ function shiftActive() {
   let block;
   keysData.forEach((item, i) => {
     block = item;
-    if (!notAddToTextArea.includes(item.textContent)) {
+    if (!notAddToTextArea.includes(block.textContent)) {
       if (keys[i].shift !== undefined) {
         block.textContent = keys[i].shift;
       } else {
