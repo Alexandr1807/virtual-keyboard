@@ -131,17 +131,20 @@ const obj = {
   'alt': false,
 };
 
-
 function innerText() {
   keysData.forEach((item, i) => {
-    if (JSON.parse(localStorage.getItem('MyObj')).lang && JSON.parse(localStorage.getItem('MyObj')).lang != 'eng') {
+    if(JSON.parse(localStorage.getItem('MyObj')) == undefined) {
+      item.textContent = keys[i].eng;
+    } else if(JSON.parse(localStorage.getItem('MyObj')).lang == 'ru') {
       item.textContent = keys[i].ru;
-    } else {
+    } else if(JSON.parse(localStorage.getItem('MyObj')).lang == 'eng') {
       item.textContent = keys[i].eng;
     }
   });
 }
+
 innerText();
+
 
 document.querySelector('.keyboard__wrapper').addEventListener('click', (e) => {
   keysData.forEach(item => {
@@ -357,7 +360,7 @@ document.querySelector('.night__mode').addEventListener('click', () => {
   }
 });
 
-if(!localStorage.getItem('Color')) {
+if(localStorage.getItem('Color') == undefined) {
   document.querySelector('.keyboard__lights').style.background = document.querySelector('.colors__input').value;  
 } else {
   for (let i = 0; i < keysData.length; i++) {
@@ -371,10 +374,8 @@ document.querySelector('.colors__input').addEventListener('input', () => {
   for (let i = 0; i < keysData.length; i++) {
     keysData[i].style.color = document.querySelector('.colors__input').value;
   }
-  if(localStorage.getItem('Color')) {
     document.querySelector('.keyboard__lights').style.background = document.querySelector('.colors__input').value;
     localStorage.setItem('Color', document.querySelector('.colors__input').value);
-  }
 });
 
 
@@ -417,8 +418,6 @@ function write(el) {
     text.tag.setRangeText(el.textContent, text.tag.selectionStart, text.tag.selectionEnd, "end");
   }
 }
-
-console.log(keysData);
 
 function capsLockOn() {
   keysData.forEach(item => {
