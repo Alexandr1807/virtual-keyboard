@@ -60,7 +60,7 @@ helpInner.innerHTML = `
     Для переключения языка нажмите Shift + Alt</br>
     Клавиатура создана в ОС Windows
   </h1>
-`
+`;
 
 for (let i = 0; i < keys.length; i++) {
   let key = new Keyboard('div');
@@ -170,10 +170,10 @@ window.addEventListener('keydown', (e) => {
     if(obj.shift) {
       toggleLang();
     }
-    document.querySelector('.alt__left').classList.add('active')
+    document.querySelector('.alt__left').classList.add('active');
   }
   if(e.code == 'Delete') {
-    document.querySelector('.del__key').classList.add('active')
+    document.querySelector('.del__key').classList.add('active');
   }
   if(e.code == 'Backspace') {
     if (text.tag.selectionStart) {
@@ -198,14 +198,14 @@ window.addEventListener('keydown', (e) => {
     document.querySelector('.shift__left').classList.add('active');
     obj.shift = true;
     if(obj.alt) {
-      toggleLang()
+      toggleLang();
     }
-    shiftActive()
+    shiftActive();
   }
   if(e.code == 'ShiftRight') {
     document.querySelector('.shift__right').classList.add('active');
     obj.shift = true;
-    shiftActive()
+    shiftActive();
   }
   if(e.code == 'CapsLock') {
     if(!obj.CapsLock) {
@@ -267,8 +267,8 @@ window.addEventListener('keyup', (e) => {
     }
     if(e.code == 'AltLeft') {
       obj.alt = false;
-      document.querySelector('.alt__left').classList.remove('active')
-      document.querySelector('.alt__left').classList.add('remove')
+      document.querySelector('.alt__left').classList.remove('active');
+      document.querySelector('.alt__left').classList.add('remove');
     }
     if(e.code == 'Backspace') {
       document.querySelector('.backspace__key').classList.remove('active');
@@ -324,7 +324,7 @@ window.addEventListener('keyup', (e) => {
     }
     setTimeout(() => {
       keysData[i].classList.remove('remove');
-    }, 200)
+    }, 200);
   }
 });
 
@@ -371,11 +371,10 @@ document.querySelector('.colors__input').addEventListener('input', () => {
   for (let i = 0; i < keysData.length; i++) {
     keysData[i].style.color = document.querySelector('.colors__input').value;
   }
-  if(!localStorage.getItem('Color')) {
-
+  if(localStorage.getItem('Color')) {
+    document.querySelector('.keyboard__lights').style.background = document.querySelector('.colors__input').value;
+    localStorage.setItem('Color', document.querySelector('.colors__input').value);
   }
-  document.querySelector('.keyboard__lights').style.background = document.querySelector('.colors__input').value;
-  localStorage.setItem('Color', document.querySelector('.colors__input').value);
 });
 
 
@@ -393,19 +392,19 @@ function write(el) {
   } else if(el.textContent == 'Tab') {
     text.tag.value += '    ';
   } else if(el.textContent == "Window") {
-    
+    text.tag.value += '';
   } else if(el.textContent == "CapsLock") {
     if(!obj.CapsLock){
-      capsLockOn()
+      capsLockOn();
       obj.CapsLock = true;
       el.classList.toggle("active");
     } else {
-      capsLockOn()
+      capsLockOn();
       obj.CapsLock = false;
       el.classList.toggle("active");
     }
   } else if(el.textContent == "Shift") {
-
+    text.tag.value += '';
   } else if(el.textContent == "Del") {
     if(text.tag.selectionEnd+1){
       text.tag.setRangeText("", text.tag.selectionStart, text.tag.selectionEnd+1, "end");
@@ -413,9 +412,7 @@ function write(el) {
   } else if(el.textContent == "ctrl") {
       // key ctrl
   } else if(el.textContent == "Alt") {
-    if(obj.shift){
-      togleLangKeys();
-    }
+    text.tag.value += '';
   } else {
     text.tag.setRangeText(el.textContent, text.tag.selectionStart, text.tag.selectionEnd, "end");
   }
@@ -434,7 +431,7 @@ function capsLockOn() {
         item.textContent = item.textContent.toLowerCase();
       }
     }
-  })
+  });
 }
 
 function toggleLang(){
