@@ -245,6 +245,8 @@ function shiftDeactive() {
     }
   });
 }
+shiftActive();
+shiftDeactive();
 
 document.querySelector('.keyboard__wrapper').addEventListener('click', (e) => {
   keysData.forEach((item) => {
