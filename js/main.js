@@ -163,13 +163,28 @@ function write(el) {
     if (text.tag.selectionStart) {
       text.tag.setRangeText('', text.tag.selectionStart - 1, text.tag.selectionEnd, 'end');
     }
+    setTimeout(() => {
+      el.classList.remove('active');
+    }, 200)
   } else if (el.textContent === 'Space') {
     text.tag.value += ' ';
+    setTimeout(() => {
+      el.classList.remove('active');
+    }, 200)
   } else if (el.textContent === 'Enter') {
     text.tag.value += '\n';
+    setTimeout(() => {
+      el.classList.remove('active');
+    }, 200)
   } else if (el.textContent === 'Tab') {
     text.tag.value += '    ';
+    setTimeout(() => {
+      el.classList.remove('active');
+    }, 200)
   } else if (el.textContent === 'Window') {
+    setTimeout(() => {
+      el.classList.remove('active');
+    }, 200)
     text.tag.value += '';
   } else if (el.textContent === 'CapsLock') {
     if (!obj.CapsLock) {
@@ -183,16 +198,31 @@ function write(el) {
     }
   } else if (el.textContent === 'Shift') {
     text.tag.value += '';
+    setTimeout(() => {
+      el.classList.remove('active');
+    }, 200)
   } else if (el.textContent === 'Del') {
     if (text.tag.selectionEnd + 1) {
       text.tag.setRangeText('', text.tag.selectionStart, text.tag.selectionEnd + 1, 'end');
     }
+    setTimeout(() => {
+      el.classList.remove('active');
+    }, 200)
   } else if (el.textContent === 'ctrl') {
-    // key ctrl
+    setTimeout(() => {
+      el.classList.remove('active');
+    }, 200)
   } else if (el.textContent === 'Alt') {
     text.tag.value += '';
+    setTimeout(() => {
+      el.classList.remove('active');
+    }, 200)
   } else {
     text.tag.setRangeText(el.textContent, text.tag.selectionStart, text.tag.selectionEnd, 'end');
+    setTimeout(() => {
+      el.classList.remove('active');
+    }, 200)
+    
   }
 }
 
@@ -256,6 +286,7 @@ shiftDeactive();
 document.querySelector('.keyboard__wrapper').addEventListener('click', (e) => {
   keysData.forEach((item) => {
     if (item === e.target) {
+      item.classList.add('active');
       write(item);
     }
   });
