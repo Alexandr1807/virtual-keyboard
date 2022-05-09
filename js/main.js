@@ -237,14 +237,19 @@ function shiftDeactive() {
     if (!notAddToTextArea.includes(block.textContent)) {
       if (obj.CapsLock) {
         block.textContent = block.textContent.toUpperCase();
-      } else if (obj.lang === 'ru') {
-        block.textContent = keys[i].ru;
+      } else if (localStorage.getItem('MyObj')) {
+        if (JSON.parse(localStorage.getItem('MyObj')).lang === 'ru') {
+          block.textContent = keys[i].ru;
+        } else {
+          block.textContent = keys[i].eng;
+        }
       } else {
         block.textContent = keys[i].eng;
       }
     }
   });
 }
+
 shiftActive();
 shiftDeactive();
 
@@ -339,9 +344,6 @@ window.addEventListener('keydown', (e) => {
     if (e.code === 'ControlRight') {
       document.querySelector('.control__right').classList.add('active');
     }
-    if (e.code === 'AltLeft') {
-      document.querySelector('.alt__left').classList.add('active');
-    }
     if (e.code === 'AltRight') {
       document.querySelector('.alt__right').classList.add('active');
     }
@@ -419,10 +421,6 @@ window.addEventListener('keyup', (e) => {
       document.querySelector('.control__right').classList.remove('active');
       document.querySelector('.control__right').classList.remove('remove');
     }
-    if (e.code === 'AltLeft') {
-      document.querySelector('.alt__left').classList.remove('active');
-      document.querySelector('.alt__left').classList.remove('remove');
-    }
     if (e.code === 'AltRight') {
       document.querySelector('.alt__right').classList.remove('active');
       document.querySelector('.alt__right').classList.remove('remove');
@@ -478,3 +476,5 @@ document.querySelector('.colors__input').addEventListener('input', () => {
   document.querySelector('.keyboard__lights').style.background = document.querySelector('.colors__input').value;
   localStorage.setItem('Color', document.querySelector('.colors__input').value);
 });
+
+alert('Проверьте что у вас в системе совпадает язык с языком на клавиатуре');
