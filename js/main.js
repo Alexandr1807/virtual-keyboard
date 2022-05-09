@@ -54,7 +54,8 @@ const helpInner = document.querySelector('.help');
 helpInner.innerHTML = `
   <h1 class="help__text">
     Для переключения языка нажмите Shift + Alt</br>
-    Клавиатура создана в ОС Windows
+    Клавиатура создана в ОС Windows</br>
+    Проверьте что у вас в системе совпадает язык с языком на клавиатуре
   </h1>
 `;
 
@@ -508,4 +509,3 @@ document.querySelector('.colors__input').addEventListener('input', () => {
   localStorage.setItem('Color', document.querySelector('.colors__input').value);
 });
 
-alert('Проверьте что у вас в системе совпадает язык с языком на клавиатуре');
